@@ -490,3 +490,73 @@ footer {
         max-width: 400px;/*pero que no crezca demasiado si el celular es grande*/
     }
 }
+/* Grilla de álbumes — mismo espíritu que lineup-portrait-grid--classic */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1.25rem;
+}
+.album-card {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+/* Cuadrado con bordes redondeados */
+.album-card__cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;          /* ← cuadrado; integrantes usan 3/4 */
+    object-fit: contain;          /* ← carátula completa, sin recortar */
+    background: #111;             /* relleno si la imagen no llena el cuadrado */
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    display: block;
+}
+.album-card__cap {
+    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    text-align: center;
+}
+.album-card__cap strong {
+    display: block;
+    color: #fff;
+}
+.album-card__cap span {
+    display: block;
+    color: #9a9a9a;
+    font-size: 0.8rem;
+}
+.enlace-spotify{
+    margin: 1.25rem 0 0.5rem 0;
+    text-align: center;
+}
+.enlace-spotify-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    background: #1db954;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 4px 14px rgba(29, 185, 84, 0.35);
+    transition: background 0.2s ease,transform 0.15 ease,box-shadow 0.2s ease;
+}
+.enlace-spotify-btn:hover{
+    background: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.45);
+    color: #fff;
+}
+.enlace-spotify_btn:focus-visible{
+    outline:  2px solid #fff;
+    outline-offset: italic;
+}
+.enlace-spotify_btn em{
+    font-style: italic;
+}

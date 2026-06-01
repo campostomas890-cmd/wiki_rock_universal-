@@ -3,281 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador Universal de Bandas</title>
-    <meta name="description" content="Página principal con buscador universal enfocado solo en bandas de música.">
+    <title>Universal Rock World</title>
     <style>
-        :root {
-            color-scheme: dark;
-            --fondo: #0f172a;
-            --tarjeta: #111827;
-            --texto: #e5e7eb;
-            --detalle: #22d3ee;
-            --detalle-hover: #06b6d4;
-            --borde: #1f2937;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: radial-gradient(circle at top, #1e293b 0%, var(--fondo) 55%);
-            color: var(--texto);
             min-height: 100vh;
-            display: grid;
-            place-items: center;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 24px;
         }
 
-        main {
-            width: min(880px, 100%);
-            background: rgba(17, 24, 39, 0.92);
-            border: 1px solid var(--borde);
-            border-radius: 16px;
-            padding: 28px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        .portada {
+            text-align: center;
+            width: min(520px, 100%);
         }
 
         h1 {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: clamp(1.5rem, 2vw + 1rem, 2.3rem);
+            margin: 0 0 32px;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            letter-spacing: 0.04em;
             color: #f8fafc;
         }
 
-        p {
-            margin-top: 0;
-            color: #cbd5e1;
-        }
-
         .busqueda {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 10px;
-            margin-top: 18px;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
-        input, select, button {
-            border-radius: 10px;
-            border: 1px solid var(--borde);
-            background: #0b1220;
-            color: var(--texto);
+        input {
+            flex: 1;
             padding: 12px 14px;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            background: #1e293b;
+            color: #f1f5f9;
             font-size: 1rem;
         }
 
-        input:focus, select:focus {
-            outline: 2px solid var(--detalle);
-            outline-offset: 1px;
+        input:focus {
+            outline: 2px solid #38bdf8;
         }
 
         button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: bold;
             cursor: pointer;
-            border-color: #164e63;
-            background: linear-gradient(180deg, var(--detalle), #0891b2);
-            color: #05202a;
-            font-weight: 700;
         }
 
         button:hover {
-            background: linear-gradient(180deg, #67e8f9, var(--detalle-hover));
+            background: #7dd3fc;
         }
 
-        .controles {
-            margin-top: 10px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .sugerencias {
-            margin-top: 20px;
-            padding: 0;
+        #resultados {
             list-style: none;
-            display: grid;
-            gap: 8px;
-        }
-
-        .sugerencias li button {
-            width: 100%;
+            padding: 0;
+            margin: 0;
             text-align: left;
-            background: #0b1220;
-            color: #dbeafe;
-            border: 1px solid #243244;
-            font-weight: 500;
         }
 
-        .sugerencias li button:hover {
-            background: #122033;
+        #resultados li {
+            margin-bottom: 8px;
         }
 
-        .estado {
-            margin-top: 14px;
-            min-height: 22px;
-            color: #93c5fd;
-            font-size: 0.95rem;
+        #resultados a {
+            display: block;
+            padding: 10px 12px;
+            background: #1e293b;
+            border-radius: 8px;
+            color: #7dd3fc;
+            text-decoration: none;
         }
 
-        .nota {
-            margin-top: 18px;
-            font-size: 0.9rem;
+        #resultados a:hover {
+            background: #334155;
+        }
+
+        #mensaje {
             color: #94a3b8;
-        }
-
-        @media (max-width: 670px) {
-            .busqueda {
-                grid-template-columns: 1fr;
-            }
-
-            .controles {
-                grid-template-columns: 1fr;
-            }
+            font-size: 0.95rem;
+            min-height: 1.2em;
         }
     </style>
 </head>
 <body>
-    <main>
-        <h1>Buscador universal de bandas</h1>
-        <p>Escribí el nombre de una banda y elegí dónde buscar. Esta página está enfocada únicamente en bandas de música.</p>
+    <div class="portada">
+        <h1>Universal Rock World</h1>
 
         <div class="busqueda">
-            <input type="search" id="buscadorBandas" placeholder="Ej: Metallica, Linkin Park, Foo Fighters..." autocomplete="off">
-            <button id="buscarBtn" type="button">Buscar</button>
+            <input type="search" id="buscar" placeholder="Buscar banda..." autocomplete="off">
+            <button type="button" id="btnBuscar">Buscar</button>
         </div>
 
-        <div class="controles">
-            <select id="fuenteBusqueda" aria-label="Fuente de búsqueda">
-                <option value="universal">Universal (Google + Spotify + YouTube + Wikipedia)</option>
-                <option value="google">Google</option>
-                <option value="spotify">Spotify</option>
-                <option value="youtube">YouTube</option>
-                <option value="wikipedia">Wikipedia</option>
-            </select>
-            <select id="filtroGenero" aria-label="Filtrar por género">
-                <option value="todos">Todos los géneros</option>
-                <option value="rock">Rock</option>
-                <option value="metal">Metal</option>
-                <option value="alternativo">Alternativo</option>
-            </select>
-        </div>
-
-        <p class="estado" id="estado"></p>
-        <ul class="sugerencias" id="sugerencias"></ul>
-        <p class="nota">Tip: al usar modo universal se abrirán varias pestañas a la vez.</p>
-    </main>
+        <p id="mensaje"></p>
+        <ul id="resultados"></ul>
+    </div>
 
     <script>
-        const BANDAS = [
-            { nombre: "Breaking Benjamin", genero: "alternativo" },
-            { nombre: "Linkin Park", genero: "alternativo" },
-            { nombre: "Three Days Grace", genero: "alternativo" },
-            { nombre: "Skillet", genero: "rock" },
-            { nombre: "Red", genero: "alternativo" },
-            { nombre: "Starset", genero: "alternativo" },
-            { nombre: "Chevelle", genero: "alternativo" },
-            { nombre: "Slipknot", genero: "metal" },
-            { nombre: "Metallica", genero: "metal" },
-            { nombre: "Iron Maiden", genero: "metal" },
-            { nombre: "Foo Fighters", genero: "rock" },
-            { nombre: "Nirvana", genero: "rock" },
-            { nombre: "Pearl Jam", genero: "rock" },
-            { nombre: "System of a Down", genero: "metal" },
-            { nombre: "Muse", genero: "alternativo" }
+        const bandas = [
+            { nombre: "Breaking Benjamin", pagina: "index.html", palabras: "breaking benjamin rock alternativo" },
+            { nombre: "Slipknot", pagina: "", palabras: "slipknot metal" },
+            { nombre: "Chevelle", pagina: "", palabras: "chevelle rock alternativo" },
+            { nombre: "Linkin Park", pagina: "", palabras: "linkin park rock" },
+            { nombre: "Three Days Grace", pagina: "", palabras: "three days grace rock" }
         ];
 
-        const input = document.getElementById("buscadorBandas");
-        const lista = document.getElementById("sugerencias");
-        const estado = document.getElementById("estado");
-        const btnBuscar = document.getElementById("buscarBtn");
-        const fuente = document.getElementById("fuenteBusqueda");
-        const filtroGenero = document.getElementById("filtroGenero");
+        const input = document.getElementById("buscar");
+        const lista = document.getElementById("resultados");
+        const mensaje = document.getElementById("mensaje");
+        const btn = document.getElementById("btnBuscar");
 
-        function filtrarBandas(texto, genero) {
-            const textoLimpio = texto.trim().toLowerCase();
-            return BANDAS.filter((banda) => {
-                const coincideNombre = banda.nombre.toLowerCase().includes(textoLimpio);
-                const coincideGenero = genero === "todos" || banda.genero === genero;
-                return coincideNombre && coincideGenero;
-            });
-        }
-
-        function renderSugerencias() {
-            const texto = input.value;
-            const genero = filtroGenero.value;
-            const sugerencias = filtrarBandas(texto, genero);
-
+        function buscar() {
+            const texto = input.value.trim().toLowerCase();
             lista.innerHTML = "";
 
-            if (!texto.trim()) {
-                estado.textContent = "Escribí para ver bandas sugeridas.";
+            if (!texto) {
+                mensaje.textContent = "Escribí el nombre de una banda.";
                 return;
             }
 
-            if (!sugerencias.length) {
-                estado.textContent = "No se encontraron bandas con ese criterio.";
+            const encontradas = bandas.filter((b) =>
+                b.nombre.toLowerCase().includes(texto) ||
+                b.palabras.includes(texto)
+            );
+
+            if (!encontradas.length) {
+                mensaje.textContent = "No hay bandas con ese nombre en el sitio.";
                 return;
             }
 
-            estado.textContent = `${sugerencias.length} banda(s) encontrada(s).`;
-            sugerencias.forEach((banda) => {
+            mensaje.textContent = encontradas.length === 1
+                ? "1 banda encontrada:"
+                : encontradas.length + " bandas encontradas:";
+
+            encontradas.forEach((banda) => {
                 const li = document.createElement("li");
-                const boton = document.createElement("button");
-                boton.type = "button";
-                boton.textContent = `${banda.nombre} - ${banda.genero}`;
-                boton.addEventListener("click", () => buscarBanda(banda.nombre));
-                li.appendChild(boton);
+                if (banda.pagina) {
+                    const enlace = document.createElement("a");
+                    enlace.href = banda.pagina;
+                    enlace.textContent = banda.nombre;
+                    li.appendChild(enlace);
+                } else {
+                    li.textContent = banda.nombre + " (próximamente)";
+                    li.style.padding = "10px 12px";
+                    li.style.background = "#1e293b";
+                    li.style.borderRadius = "8px";
+                    li.style.color = "#94a3b8";
+                }
                 lista.appendChild(li);
             });
         }
 
-        function abrir(url) {
-            window.open(url, "_blank", "noopener");
-        }
-
-        function buscarBanda(nombreManual) {
-            const termino = (nombreManual || input.value).trim();
-            if (!termino) {
-                estado.textContent = "Ingresá una banda para buscar.";
-                input.focus();
-                return;
-            }
-
-            const terminoCodificado = encodeURIComponent(termino + " banda");
-            const modo = fuente.value;
-
-            const urls = {
-                google: `https://www.google.com/search?q=${terminoCodificado}`,
-                spotify: `https://open.spotify.com/search/${encodeURIComponent(termino)}`,
-                youtube: `https://www.youtube.com/results?search_query=${terminoCodificado}`,
-                wikipedia: `https://es.wikipedia.org/wiki/Special:Search?search=${terminoCodificado}`
-            };
-
-            if (modo === "universal") {
-                abrir(urls.google);
-                abrir(urls.spotify);
-                abrir(urls.youtube);
-                abrir(urls.wikipedia);
-                estado.textContent = `Búsqueda universal iniciada para "${termino}".`;
-                return;
-            }
-
-            abrir(urls[modo]);
-            estado.textContent = `Búsqueda en ${modo} para "${termino}".`;
-        }
-
-        input.addEventListener("input", renderSugerencias);
-        filtroGenero.addEventListener("change", renderSugerencias);
-        btnBuscar.addEventListener("click", () => buscarBanda());
-        input.addEventListener("keydown", (evento) => {
-            if (evento.key === "Enter") {
-                evento.preventDefault();
-                buscarBanda();
+        btn.addEventListener("click", buscar);
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                buscar();
             }
         });
-
-        estado.textContent = "Escribí para ver bandas sugeridas.";
+        input.addEventListener("input", buscar);
     </script>
 </body>
 </html>

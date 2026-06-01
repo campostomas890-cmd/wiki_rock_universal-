@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Universal de Bandas</title>
+    <meta name="description" content="Página principal con buscador universal enfocado solo en bandas de música.">
+    <style>
+        :root {
+            color-scheme: dark;
+            --fondo: #0f172a;
+            --tarjeta: #111827;
+            --texto: #e5e7eb;
+            --detalle: #22d3ee;
+            --detalle-hover: #06b6d4;
+            --borde: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle at top, #1e293b 0%, var(--fondo) 55%);
+            color: var(--texto);
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        main {
+            width: min(880px, 100%);
+            background: rgba(17, 24, 39, 0.92);
+            border: 1px solid var(--borde);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: clamp(1.5rem, 2vw + 1rem, 2.3rem);
+            color: #f8fafc;
+        }
+
+        p {
+            margin-top: 0;
+            color: #cbd5e1;
+        }
+
+        .busqueda {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        input, select, button {
+            border-radius: 10px;
+            border: 1px solid var(--borde);
+            background: #0b1220;
+            color: var(--texto);
+            padding: 12px 14px;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid var(--detalle);
+            outline-offset: 1px;
+        }
+
+        button {
+            cursor: pointer;
+            border-color: #164e63;
+            background: linear-gradient(180deg, var(--detalle), #0891b2);
+            color: #05202a;
+            font-weight: 700;
+        }
+
+        button:hover {
+            background: linear-gradient(180deg, #67e8f9, var(--detalle-hover));
+        }
+
+        .controles {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .sugerencias {
+            margin-top: 20px;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .sugerencias li button {
+            width: 100%;
+            text-align: left;
+            background: #0b1220;
+            color: #dbeafe;
+            border: 1px solid #243244;
+            font-weight: 500;
+        }
+
+        .sugerencias li button:hover {
+            background: #122033;
+        }
+
+        .estado {
+            margin-top: 14px;
+            min-height: 22px;
+            color: #93c5fd;
+            font-size: 0.95rem;
+        }
+
+        .nota {
+            margin-top: 18px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 670px) {
+            .busqueda {
+                grid-template-columns: 1fr;
+            }
+
+            .controles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Buscador universal de bandas</h1>
+        <p>Escribí el nombre de una banda y elegí dónde buscar. Esta página está enfocada únicamente en bandas de música.</p>
+
+        <div class="busqueda">
+            <input type="search" id="buscadorBandas" placeholder="Ej: Metallica, Linkin Park, Foo Fighters..." autocomplete="off">
+            <button id="buscarBtn" type="button">Buscar</button>
+        </div>
+
+        <div class="controles">
+            <select id="fuenteBusqueda" aria-label="Fuente de búsqueda">
+                <option value="universal">Universal (Google + Spotify + YouTube + Wikipedia)</option>
+                <option value="google">Google</option>
+                <option value="spotify">Spotify</option>
+                <option value="youtube">YouTube</option>
+                <option value="wikipedia">Wikipedia</option>
+            </select>
+            <select id="filtroGenero" aria-label="Filtrar por género">
+                <option value="todos">Todos los géneros</option>
+                <option value="rock">Rock</option>
+                <option value="metal">Metal</option>
+                <option value="alternativo">Alternativo</option>
+            </select>
+        </div>
+
+        <p class="estado" id="estado"></p>
+        <ul class="sugerencias" id="sugerencias"></ul>
+        <p class="nota">Tip: al usar modo universal se abrirán varias pestañas a la vez.</p>
+    </main>
+
+    <script>
+        const BANDAS = [
+            { nombre: "Breaking Benjamin", genero: "alternativo" },
+            { nombre: "Linkin Park", genero: "alternativo" },
+            { nombre: "Three Days Grace", genero: "alternativo" },
+            { nombre: "Skillet", genero: "rock" },
+            { nombre: "Red", genero: "alternativo" },
+            { nombre: "Starset", genero: "alternativo" },
+            { nombre: "Chevelle", genero: "alternativo" },
+            { nombre: "Slipknot", genero: "metal" },
+            { nombre: "Metallica", genero: "metal" },
+            { nombre: "Iron Maiden", genero: "metal" },
+            { nombre: "Foo Fighters", genero: "rock" },
+            { nombre: "Nirvana", genero: "rock" },
+            { nombre: "Pearl Jam", genero: "rock" },
+            { nombre: "System of a Down", genero: "metal" },
+            { nombre: "Muse", genero: "alternativo" }
+        ];
+
+        const input = document.getElementById("buscadorBandas");
+        const lista = document.getElementById("sugerencias");
+        const estado = document.getElementById("estado");
+        const btnBuscar = document.getElementById("buscarBtn");
+        const fuente = document.getElementById("fuenteBusqueda");
+        const filtroGenero = document.getElementById("filtroGenero");
+
+        function filtrarBandas(texto, genero) {
+            const textoLimpio = texto.trim().toLowerCase();
+            return BANDAS.filter((banda) => {
+                const coincideNombre = banda.nombre.toLowerCase().includes(textoLimpio);
+                const coincideGenero = genero === "todos" || banda.genero === genero;
+                return coincideNombre && coincideGenero;
+            });
+        }
+
+        function renderSugerencias() {
+            const texto = input.value;
+            const genero = filtroGenero.value;
+            const sugerencias = filtrarBandas(texto, genero);
+
+            lista.innerHTML = "";
+
+            if (!texto.trim()) {
+                estado.textContent = "Escribí para ver bandas sugeridas.";
+                return;
+            }
+
+            if (!sugerencias.length) {
+                estado.textContent = "No se encontraron bandas con ese criterio.";
+                return;
+            }
+
+            estado.textContent = `${sugerencias.length} banda(s) encontrada(s).`;
+            sugerencias.forEach((banda) => {
+                const li = document.createElement("li");
+                const boton = document.createElement("button");
+                boton.type = "button";
+                boton.textContent = `${banda.nombre} - ${banda.genero}`;
+                boton.addEventListener("click", () => buscarBanda(banda.nombre));
+                li.appendChild(boton);
+                lista.appendChild(li);
+            });
+        }
+
+        function abrir(url) {
+            window.open(url, "_blank", "noopener");
+        }
+
+        function buscarBanda(nombreManual) {
+            const termino = (nombreManual || input.value).trim();
+            if (!termino) {
+                estado.textContent = "Ingresá una banda para buscar.";
+                input.focus();
+                return;
+            }
+
+            const terminoCodificado = encodeURIComponent(termino + " banda");
+            const modo = fuente.value;
+
+            const urls = {
+                google: `https://www.google.com/search?q=${terminoCodificado}`,
+                spotify: `https://open.spotify.com/search/${encodeURIComponent(termino)}`,
+                youtube: `https://www.youtube.com/results?search_query=${terminoCodificado}`,
+                wikipedia: `https://es.wikipedia.org/wiki/Special:Search?search=${terminoCodificado}`
+            };
+
+            if (modo === "universal") {
+                abrir(urls.google);
+                abrir(urls.spotify);
+                abrir(urls.youtube);
+                abrir(urls.wikipedia);
+                estado.textContent = `Búsqueda universal iniciada para "${termino}".`;
+                return;
+            }
+
+            abrir(urls[modo]);
+            estado.textContent = `Búsqueda en ${modo} para "${termino}".`;
+        }
+
+        input.addEventListener("input", renderSugerencias);
+        filtroGenero.addEventListener("change", renderSugerencias);
+        btnBuscar.addEventListener("click", () => buscarBanda());
+        input.addEventListener("keydown", (evento) => {
+            if (evento.key === "Enter") {
+                evento.preventDefault();
+                buscarBanda();
+            }
+        });
+
+        estado.textContent = "Escribí para ver bandas sugeridas.";
+    </script>
+</body>
+</html>

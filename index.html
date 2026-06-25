@@ -3,244 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin Burnley - Historia y biografía | Breaking Benjamin</title>
-    <meta name="description" content="Descubre la vida, carrera y música de Benjamin Burnley, el líder de Breaking Benjamin. Biografía, álbumes y más.">
-    <meta name="keywords" content="Breaking Benjamin, Benjamin Burnley, Rock, Historia, Música">
-    <meta name="author" content="Tomás Andrés Campos">
-    <meta property="og:title" content="Fans de Benjamin Burnley - Sitio oficial">
-    <meta property="og:description" content="Descubre la historia y música de Breaking Benjamin en este sitio hecho por fans.">
-    <meta property="og:image" content="img/benjamin-burnley-epoca-clasica.jpg">
-    <meta property="og:url" content="https://campostomas890-cmd.github.io/Breaking/">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Benjamin Burnley Fan Site">
-    <meta name="twitter:description" content="Todo sobre el líder de Breaking Benjamin.">
-    <meta name="twitter:image" content="img/benjamin-burnley-epoca-clasica.jpg">
+    <title>Wiki Rock Universal</title>
     <link rel="stylesheet" href="estilo.css">
+    <style>
+        body.portal {
+            --accent: #38bdf8;
+            --accent-dark: #0ea5e9;
+            --intro-heading: #38bdf8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .portal-box {
+            text-align: center;
+            width: min(520px, 100%);
+        }
+
+        .portal-box h1 {
+            margin: 0 0 32px;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            letter-spacing: 0.04em;
+            color: #f8fafc;
+        }
+
+        #resultados {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        #resultados li {
+            margin-bottom: 8px;
+        }
+
+        #resultados a {
+            display: block;
+            padding: 10px 12px;
+            background: #1e293b;
+            border-radius: 8px;
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+
+        #resultados a:hover {
+            background: #334155;
+        }
+
+        #mensaje {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            min-height: 1.2em;
+        }
+    </style>
 </head>
+<body class="portal theme-bb">
+    <div class="portal-box">
+        <h1>Wiki Rock Universal</h1>
 
-<body>
-    
-    <header class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">Wiki Rock Universal</h1>
-            <p class="hero-tagline">¿Qué banda de rock o historia deseas buscar hoy?</p>
-            <div class="search-box search-box--hero">
-                <input type="search" id="globalSearch" placeholder="Buscar otras bandas (Slipknot, Chevelle...)" autocomplete="off">
-                <button type="button" class="search-btn" id="globalSearchBtn">Explorar bandas</button>
-            </div>
+        <div class="search-box search-box--hero">
+            <input type="search" id="buscar" placeholder="Buscar banda..." autocomplete="off">
+            <button type="button" class="search-btn" id="btnBuscar">Buscar</button>
         </div>
-    </header>
 
-<main class="site-main">
-    <div class="contenedor-principal">
-        <div class="introduccion">
-            <h2>La historia detrás del nombre</h2>
-            <p>
-            Desde el sonido crudo de <strong>Saturate</strong> hasta el dominio del rock moderno.
-            Utiliza el buscador para descubrir detalles sobre la <strong>demanda</strong> de Blow Me Away,
-            la formación de los <strong>integrantes</strong> o la historia de <strong>Benjamin Burnley</strong>.
-            </p>
-        </div>
+        <p id="mensaje" style="margin-top: 1rem;"></p>
+        <ul id="resultados"></ul>
     </div>
 
-    <div class="contenedor-principal">
-        <div class="local-search-container">
-            <p class="local-search-label">¿Qué quieres saber de Breaking Benjamin?</p>
-            <div class="search-box search-box--local">
-                <input type="search" id="localSearch" placeholder="Ej: Demanda, Saturate, Micrófono..." autocomplete="off">
-            </div>
-        </div>
-    </div>
+    <script>
+        const bandas = [
+            { nombre: "Breaking Benjamin", pagina: "Breaking_Benjamin.html", palabras: "breaking benjamin rock alternativo" },
+            { nombre: "Slipknot", pagina: "slipknot.html", palabras: "slipknot metal nu metal corey taylor" },
+            { nombre: "Chevelle", pagina: "", palabras: "chevelle rock alternativo" },
+            { nombre: "Linkin Park", pagina: "", palabras: "linkin park rock" },
+            { nombre: "Three Days Grace", pagina: "", palabras: "three days grace rock" }
+        ];
 
-    <div id="content">
-        <section class="card" data-info="biografia Benjamin Burnley Funcion banda">
-        <h2>Benjamin Burnley (Historia de Breaking Benjamin) </h2>
-        <img src="img/benjamin-portrait.png" alt="Retrato de Benjamin Burnley" class="card-image" width="400" height="400">
-        <p>Benjamin nació en Atlantic City, Nueva Jersey (1978). Su interés por la música empezó temprano, influenciado por el grunge de Nirvana.
-            El origen del nombre: El nombre "Breaking Benjamin" surgió de un accidente real. Mientras Ben tocaba en un club, tomó prestado el micrófono de un tercero y lo rompió sin querer. El dueño del micrófono subió al escenario y dijo: "I'd like to thank Benjamin for breaking my f*ing microphone" (Quiero agradecer a Benjamin por romper mi maldito micrófono).</p>
-    </section>
+        const input = document.getElementById("buscar");
+        const lista = document.getElementById("resultados");
+        const mensaje = document.getElementById("mensaje");
+        const btn = document.getElementById("btnBuscar");
 
-   
-    <div class="Separacion_BB">
-        <div class="card" data-info="decadencia problemas internos benjamin burnley despido mark klepaski aaron fink">
-            <h2>La Tormenta Interna: El Quiebre de la Formación Clásica</h2>
-            <p>
-                La "decadencia" o crisis más fuerte ocurrió en 2010. Mientras Benjamin Burnley lidiaba con problemas de salud crónicos (fobias y enfermedades no diagnosticadas), los integrantes <strong>Aaron Fink</strong> y <strong>Mark Klepaski</strong> tomaron decisiones sin su consentimiento. 
-                Esto incluyó la aprobación de una versión remix de "Blow Me Away" con la cantante Valora. Ben, al enterarse, los despidió de inmediato vía e-mail, lo que derivó en una batalla legal de años por el nombre de la banda. Este periodo de silencio casi termina con Breaking Benjamin para siempre.
-            </p>
-            <p>
-                <a href="https://www.youtube.com/watch?v=0_n_K_n_n_I" target="_blank" style="color: #007bff; text-decoration: underline;">Escuchar el remix de la discordia</a>
-            </p>
-        </div>
-    </div>
+        function buscar() {
+            const texto = input.value.trim().toLowerCase();
+            lista.innerHTML = "";
 
-    <section class="card" data-info="Breaking Benjamin integrantes formacion Aaron Fink Mark Klepaski Jeremy Hummel Chad Szeliga Jasen Rauch Keith Wallen Aaron Bruch Shaun Foist banda">
-        <h2>La banda antes de <em>Saturate</em> y la formación actual</h2>
-        <p>Antes del lanzamiento de <strong><em>Saturate</em></strong> (2002), Breaking Benjamin ya era un cuarteto. En ese debut, la banda estaba formada por:</p>
-        <div class="lineup-block">
-            <h3>Formación en la época de <em>Saturate</em></h3>
-            <figure class="lineup-band-photo">
-                <img src="breaking-benjamin40872.jpg" alt="Breaking Benjamin en la época del debut Saturate" class="lineup-band-photo__img" width="1200" height="675">
-                <figcaption class="lineup-band-photo__cap">Imagen grupal de referencia de la etapa cercana a <em>Saturate</em>.</figcaption>
-            </figure>
-            <div class="lineup-portrait-grid lineup-portrait-grid--classic" aria-label="Integrantes época Saturate">
-                <figure class="lineup-person">
-                    <img src="img/benjamin-burnley-epoca-nueva.jpg" alt="Benjamin Burnley, época clásica de la banda" class="lineup-person__img" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Benjamin Burnley</strong><span>Voz principal y guitarra rítmica</span></figcaption>
-                </figure>
-                <figure class="lineup-person">
-                    <img src="img/aaron-fink.jpg" alt="Aaron Fink, guitarra" class="lineup-person__img" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Aaron Fink</strong><span>Guitarra líder</span></figcaption>
-                </figure>
-                <figure class="lineup-person">
-                    <img src="img/mark-klepaski.jpg" alt="Mark Klepaski, bajo" class="lineup-person__img" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Mark Klepaski</strong><span>Bajo</span></figcaption>
-                </figure>
-                <figure class="lineup-person">
-                    <img src="img/jeremy-hummel.png" alt="Jeremy Hummel, batería" class="lineup-person__img" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Jeremy Hummel</strong><span>Batería</span></figcaption>
-                </figure>
-            </div>
-        </div>
+            if (!texto) {
+                mensaje.textContent = "Escribí el nombre de una banda.";
+                return;
+            }
 
-        <p>Más adelante, <strong>Chad Szeliga</strong> ocupó la batería y, junto a Burnley, Fink y Klepaski, conformó la formación que acompañó gran parte de los discos posteriores (<em>We Are Not Alone</em>, <em>Phobia</em>, <em>Dear Agony</em>) hasta los conflictos internos y la pausa de la banda.</p>
+            const encontradas = bandas.filter((b) =>
+                b.nombre.toLowerCase().includes(texto) ||
+                b.palabras.includes(texto)
+            );
 
-        <div class="lineup-block">
+            if (!encontradas.length) {
+                mensaje.textContent = "No hay bandas con ese nombre en el sitio.";
+                return;
+            }
 
-            <h3>Formación actual</h3> <p class="lineup-note">Tras el regreso de Breaking Benjamin (2015 en adelante), la alineación quedó centrada de nuevo en Burnley y en músicos que lo acompañan en gira y estudio:</p>
+            mensaje.textContent = encontradas.length === 1
+                ? "1 banda encontrada:"
+                : encontradas.length + " bandas encontradas:";
 
-            <figure class="lineup-band-photo">
-                <img src="img/lineup-formacion-actual.jpg" alt="Breaking Benjamin, formación actual en gira" class="lineup-band-photo__img" width="1200" height="800">
-                <figcaption class="lineup-band-photo__cap">Imagen grupal de la formación actual en gira.</figcaption>
-            </figure>
+            encontradas.forEach((banda) => {
+                const li = document.createElement("li");
+                if (banda.pagina) {
+                    const enlace = document.createElement("a");
+                    enlace.href = banda.pagina;
+                    enlace.textContent = banda.nombre;
+                    li.appendChild(enlace);
+                } else {
+                    li.textContent = banda.nombre + " (próximamente)";
+                    li.style.padding = "10px 12px";
+                    li.style.background = "#1e293b";
+                    li.style.borderRadius = "8px";
+                    li.style.color = "#94a3b8";
+                }
+                lista.appendChild(li);
+            });
+        }
 
-            <div class="lineup-portrait-grid lineup-portrait-grid--classic" aria-label="Integrantes formación actual">
-    
-                <figure class="lineup-person">
-                    <img src="guitarra.jpg" alt="Benjamin Burnley" class="lineup-person__img lineup-person__img--pos-ben" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Benjamin Burnley </strong><span>Voz y Guitarra rítmica lider</span></figcaption>
-                </figure>
-            
-                <figure class="lineup-person">
-                    <img src="licensed-image.jpg" alt="Jasen Rauch" class="lineup-person__img lineup-person__img--pos-15" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Jasen Rauch</strong><span>Guitarra Ritmica</span></figcaption>
-                </figure>
-            
-                <figure class="lineup-person">
-                    <img src="img/Keith-Wallen.jpg" alt="Keith Wallen" class="lineup-person__img lineup-person__img--pos-45" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Keith Wallen</strong><span>Guitarra y coros</span></figcaption>
-                </figure>
-            
-                <figure class="lineup-person">
-                    <img src="img/2016_RiP_Breaking_Benjamin_-_Aaron_Bruch_-_by_2eight_-_8SC8606.jpg" alt="Aaron Bruch" class="lineup-person__img lineup-person__img--pos-62" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Aaron Bruch</strong><span>Bajo y coros</span></figcaption>
-                </figure>
-            
-                <figure class="lineup-person">
-                    <img src="img/licensed-image.jpg" alt="Shaun Foist" class="lineup-person__img lineup-person__img--pos-85" width="400" height="500" loading="lazy">
-                    <figcaption class="lineup-person__cap"><strong>Shaun Foist</strong><span>Batería</span></figcaption>
-                </figure>
-            
-            </div>
-        </div>
-    </section>
-    <section class="card" data-info="Breaking Benjamin Saturate 2002 2009 Phobia We Are Not Alone Dear Agony estrellato video album letras canciones recompilacion">
-        <h2>El ascenso al estrellato (2002–2009)</h2>
-        <figure class="album-cover-wrap">
-            <img src="img/Breaking_benjamin_saturate.jpg" alt="Carátula del álbum Saturate de Breaking Benjamin" class="card-image card-image--album" width="500" height="500">
-            <figcaption class="album-cover-caption"><em>Saturate</em> (2002) — representación del álbum</figcaption>
-        </figure>
-        <p class="album-video-intro" id="saturate-video-desc">Recompilación en vídeo de las canciones de <strong><em>Saturate</em></strong>, con <strong>título</strong> de cada tema y <strong>letras</strong> en pantalla (~50&nbsp;min). El vídeo está centrado debajo de la carátula.</p>
-        <div class="album-player">
-            <video class="album-player__video" controls playsinline preload="metadata" aria-describedby="saturate-video-desc" title="Saturate: recompilación con títulos y letras">
-                <source src="video/saturate-album.mp4" type="video/mp4">
-                 Podés descargar el archivo desde la carpeta <code>video</code>.
-            </video>
-        </div>
-        <p>Tras formar Breaking Benjamin, el debut <strong><em>Saturate</em></strong> (2002) marcó el sonido melódico y potente de la banda. Le siguieron <em>We Are Not Alone</em> (2004) y <em>Phobia</em> (2006), con temas como «The Diary of Jane», que las llevó a salas cada vez mayores y a la radio. La etapa cerró con <em>Dear Agony</em> (2009): una década en la que el nombre Breaking Benjamin quedó ligado al rock alternativo estadounidense.</p>
-
-        <div class="enlace_spotyfi"> 
-        <a href="https://open.spotify.com/album/1yJqr0efi39dFYC1GkA1aI" 
-        target="_blank"
-        rel="noopener noreferrer">
-        Escuchar <em> Saturate</em> en Spotify
-             </a>
-    </div>
-
-    </section>
-    </div>
-
-    <section class="album">
-   <div class="algunas_canciones">
-    
-    <h1>Albunes de la banda Breaking Benjamin</h1>
-
-    <p>Los albunes a continuacion son todos los albunes de la banda Breaking Benjamin:</p>
-
-    <div class="album-grid" aria-label="Albumes de Breaking Benjamin">
-
-        <figure class="album-card">
-        <img src="albumes (imagenes)/dear agony.jpg" alt="carátula Dear Agony"
-        class="album-card__cover" width="500"  height="500" loading="lazy">
-        <figcaption class="album-card__cap">
-            <strong>Dear Agony</strong>
-            <span>2009</span>
-            <a class="album-card__spotify" href="https://open.spotify.com/album/0mBvlBWI6TMDrWvQ8bKOKV" target="_blank" rel="noopener noreferrer"> Spotify</a>
-        </figcaption>
-    </figure>
-
-    <!--repetir figure por cada album-->
-
-    <figure class="album-card">
-    <img src="albumes (imagenes)/phobia.jpg" alt="carátula Phobia"
-    class="album-card__cover" width="500" height="500" loading="lazy">
-    <figcaption class="album-card__cap">
-        <strong>Phobia</strong>
-        <span>2006</span>
-        <a class="album-card__spotify" href="https://open.spotify.com/intl-es/album/6yJdQMlMkfYJFiSsL6764c">Spotify </a>
-    </figcaption> 
-    </figure>
-
-    <!--Repito con el siguiente album el mismo procedimiento-->
-
-    <figure class="album-card">
-        <img src="albumes (imagenes)/Ember.png" alt="carátula Ember"
-        class="album-card__cover" width="500" height="500" loading="lazy">
-        <figcaption class="album-card__cap">
-            <strong>Ember</strong>
-            <span>2018</span>
-            <a class="album-card__spotify" href="https://open.spotify.com/album/2D1s85eD7MLnPd3zjfK4tr">Spotify</a>
-        </figcaption>
-    </figure>
-
-    <figure class="album-card">
-        <img src="albumes (imagenes)/We_Are_Not_Alone.jpg" alt="carátula We_Are_Not_Alone"
-        class="album-card__cover" width="500" height="500" loading="lazy">
-        <figcaption class="album-card__cap">
-            <strong>We Are Not Alone</strong>
-            <span>2004</span>
-            <a class="album-card__spotify" href="https://open.spotify.com/intl-es/album/39FF5RewRO5F3OoNlWSQik">Spotify</a>
-        </figcaption>
-    </figure>
-    </div>    
-   </div>
-   </div>
-    </section>
-
-<section class="fan-zone">
-    <h3>¿Eres un verdadero fan de Benjamin Burnley?</h3>
-    <p>Ingresa tu correo para recibir un saludo especial del artista.</p>
-    <form id="emailForm">
-    <input type="email" id="userEmail" placeholder="tu@email.com">
-    <button type="submit">Enviar Regalo</button>
-   </form>
-</section>
-</main>
-<footer>
-<p>Esta página está hecha y bajo derechos de <strong>Tomás Andrés Campos</strong></p>
-<p>Made in Argentina</p>
-</footer>
-<script src="script.js"></script>
+        btn.addEventListener("click", buscar);
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                buscar();
+            }
+        });
+        input.addEventListener("input", buscar);
+    </script>
 </body>
 </html>

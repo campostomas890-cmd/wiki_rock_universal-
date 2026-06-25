@@ -12,7 +12,6 @@ function searchInsideBand() {
     filterCardsInPage();
 }
 
-/** Compatibilidad si algo llama aún a searchHistory (misma lógica que el buscador local). */
 function searchHistory() {
     filterCardsInPage();
 }
@@ -20,15 +19,14 @@ function searchHistory() {
 function showGlobalBandMessage() {
     const el = document.getElementById('globalSearch');
     const banda = (el && el.value.trim()) || '';
-    
+
     if (banda) {
         const busqueda = banda.toLowerCase();
 
-        // Sistema de redirección según lo que busque el usuario
-        if (busqueda.includes('breaking benjamin')) {
-            window.location.href = 'principal.html'; // Tu página actual de Breaking Benjamin
+        if (busqueda.includes('breaking benjamin') || busqueda.includes('breaking')) {
+            window.location.href = 'Breaking_Benjamin.html';
         } else if (busqueda.includes('slipknot')) {
-            window.location.href = 'slipknot.html';  // La nueva página que vas a crear
+            window.location.href = 'slipknot.html';
         } else {
             window.alert('Por ahora solo tenemos las biografías de "Breaking Benjamin" y "Slipknot".');
         }
@@ -38,13 +36,16 @@ function showGlobalBandMessage() {
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.getElementById('emailForm');
     if (formulario) {
+        const artista = document.body.dataset.fanArtist || 'tu artista favorito';
         formulario.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('userEmail').value;
             window.alert(
                 '¡Gracias! Se ha enviado el saludo a: ' +
                     email +
-                    '\n"Eres un gran fan de Breaking Benjamin. ¡Saludos!"'
+                    '\n"Eres un gran fan de ' +
+                    artista +
+                    '. ¡Saludos!"'
             );
         });
     }

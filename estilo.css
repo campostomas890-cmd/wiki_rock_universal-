@@ -1,3 +1,28 @@
+/* Temas por banda */
+.theme-bb {
+    --accent: #0056b3;
+    --accent-dark: #004494;
+    --accent-hover: #4a9eff;
+    --accent-focus: rgba(74, 158, 255, 0.85);
+    --accent-shadow: rgba(0, 86, 179, 0.35);
+    --intro-heading: #5aa9ff;
+    --lineup-heading: #9ec5ee;
+    --hero-bg: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+        url('img/lineup-formacion-actual.jpg') center top / cover no-repeat;
+}
+
+.theme-slipknot {
+    --accent: #9b111e;
+    --accent-dark: #7a0e18;
+    --accent-hover: #e63946;
+    --accent-focus: rgba(230, 57, 70, 0.85);
+    --accent-shadow: rgba(155, 17, 30, 0.35);
+    --intro-heading: #ff6b6b;
+    --lineup-heading: #ffb4b4;
+    --hero-bg: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+        url('https://upload.wikimedia.org/wikipedia/commons/f/f8/Slipknot_%282008%29.jpg') center top / cover no-repeat;
+}
+
 /*=================
 SECTION HERO (PRINCIPAL)
 ===================*/
@@ -16,7 +41,7 @@ SECTION HERO (PRINCIPAL)
 }
 
 .introduccion h2 {
-    color: #5aa9ff;
+    color: var(--intro-heading);
     margin-bottom: 15px;
     font-size: 2rem;
     font-weight: 700;
@@ -43,7 +68,6 @@ SECTION HERO (PRINCIPAL)
     width: 100%;
 }
 
-/* Estilo “wiki”: barra global + local unificadas */
 .search-box {
     display: flex;
     flex-wrap: wrap;
@@ -87,8 +111,8 @@ SECTION HERO (PRINCIPAL)
 
 #globalSearch:focus,
 #localSearch:focus {
-    border-color: rgba(74, 158, 255, 0.85);
-    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.35);
+    border-color: var(--accent-focus);
+    box-shadow: 0 0 0 3px var(--accent-shadow);
 }
 
 .search-box--hero .search-btn {
@@ -115,7 +139,6 @@ SECTION HERO (PRINCIPAL)
     letter-spacing: normal;
 }
 
-/* Solo el título del hero lleva estilo marcado; sin brillo neón en el resto */
 .hero-section {
     color: #fff;
 }
@@ -140,7 +163,6 @@ SECTION HERO (PRINCIPAL)
     margin: 0;
 }
 
-/* Tarjetas: lectura normal (sin resplandor heredado) */
 #content .card h2,
 #content .card p,
 #content .card h3 {
@@ -148,10 +170,6 @@ SECTION HERO (PRINCIPAL)
     text-transform: none;
     letter-spacing: normal;
 }
-
-/*==================
-TARJETAS DE HISTORIA
-====================*/
 
 *,
 *::before,
@@ -172,9 +190,9 @@ body {
     padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right));
 }
 
-header{
+header {
     padding: clamp(28px, 6vw, 50px) clamp(14px, 4vw, 20px);
-    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('img/benjamin-live.png') center top / cover no-repeat;
+    background: var(--hero-bg);
     background-size: cover;
     color: #f0f0f0;
 }
@@ -184,29 +202,6 @@ header.hero-section .hero-title {
     font-size: clamp(1.75rem, 4vw, 2.5rem);
 }
 
-.search-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 0.75rem;
-    max-width: min(52rem, 100%);
-}
-
-.search-container input[type="search"] {
-    flex: 1 1 12rem;
-    min-width: 0;
-    min-height: 44px;
-    padding: 0.65rem 0.85rem;
-    border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.2);
-    background: rgba(0,0,0,0.45);
-    color: #f0f0f0;
-}
-
-.search-container input[type="search"]::placeholder {
-    color: rgba(255,255,255,0.55);
-}
-
 .search-btn {
     flex: 0 0 auto;
     min-height: 44px;
@@ -214,42 +209,30 @@ header.hero-section .hero-title {
     padding: 0.65rem 1.1rem;
     border-radius: 6px;
     border: none;
-    background: #0056b3;
+    background: var(--accent);
     color: #fff;
     font-weight: 600;
     cursor: pointer;
 }
 
 .search-btn:hover {
-    background: #004494;
+    background: var(--accent-dark);
 }
 
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.card{
+.card {
     background-color: #1a1a1a;
     margin: 16px auto 20px;
     padding: clamp(18px, 3vw, 28px);
     width: min(96%, 1100px);
     max-width: 1100px;
-    border-left: 5px solid #0056b3;
+    border-left: 5px solid var(--accent);
     line-height: 1.6;
     transition: 0.3s;
 }
 
 .card:hover {
     transform: translateY(-4px);
-    border-left-color: #4a9eff;
+    border-left-color: var(--accent-hover);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
@@ -263,7 +246,6 @@ header.hero-section .hero-title {
     object-fit: cover;
 }
 
-/* Portadas de álbum (cuadradas); evita recortar la carátula */
 .card-image--album {
     max-width: min(380px, 100%);
     object-fit: contain;
@@ -277,7 +259,7 @@ header.hero-section .hero-title {
 .lineup-block h3 {
     font-size: 1.05rem;
     font-weight: 600;
-    color: #9ec5ee;
+    color: var(--lineup-heading);
     margin: 0 0 0.5rem 0;
 }
 
@@ -285,16 +267,6 @@ header.hero-section .hero-title {
     margin: 0 0 0.6rem 0;
     font-size: 0.95rem;
     color: #c4c4c4;
-}
-
-.lineup-list {
-    margin: 0;
-    padding-left: 1.25rem;
-}
-
-.lineup-list li {
-    margin: 0.4rem 0;
-    line-height: 1.45;
 }
 
 .lineup-band-photo {
@@ -315,20 +287,8 @@ header.hero-section .hero-title {
     color: #8f8f8f;
 }
 
-.lineup-portrait-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1.1rem;
-    margin-top: 1rem;
-}
-/* Formación clásica: usa casi todo el ancho de la tarjeta, con buen espacio entre fotos */
-/* --- BLOQUE DE INTEGRANTES CORREGIDO --- */
-
-/* --- BLOQUE DE INTEGRANTES CORREGIDO --- */
-
 .lineup-portrait-grid--classic {
     display: grid;
-    /* auto-fit hace que los 5 integrantes se acomoden solos en una fila si hay espacio */
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 1.5rem;
     width: 100%;
@@ -343,23 +303,18 @@ header.hero-section .hero-title {
 
 .lineup-person__img {
     width: 100%;
-    /* Esto hace que todas las fotos sean rectángulos verticales iguales */
-    aspect-ratio: 3 / 4; 
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: 10px;
     border: 1px solid #2a2a2a;
     display: block;
 }
 
-/* Clases de posición para centrar los rostros según la foto */
 .lineup-person__img--pos-15 { object-position: 39.1% center; }
 .lineup-person__img--pos-45 { object-position: 35% center; }
 .lineup-person__img--pos-62 { object-position: 42% center; }
 .lineup-person__img--pos-85 { object-position: 45% center; }
-.lineup-person__img--pos-ben {
-    /* para mover la imagen */
-    object-position: 30.9% center;
-}
+.lineup-person__img--pos-ben { object-position: 30.9% center; }
 
 .lineup-person__cap {
     margin-top: 0.75rem;
@@ -368,14 +323,10 @@ header.hero-section .hero-title {
     color: #d0d0d0;
 }
 
-/* Limpieza total del strong (quitamos lo que parecía una imagen) */
 .lineup-person__cap strong {
     display: block;
     font-weight: 600;
     color: #fff;
-    border: none;
-    border-radius: 0;
-    aspect-ratio: auto;
 }
 
 .lineup-person__cap span {
@@ -407,7 +358,6 @@ header.hero-section .hero-title {
     font-size: 0.95rem;
 }
 
-/* Reproductor centrado; un poco más ancho en pantallas grandes */
 .album-player {
     margin: 1rem auto 1.25rem auto;
     max-width: min(720px, 100%);
@@ -422,10 +372,8 @@ header.hero-section .hero-title {
     display: block;
     width: 100%;
     max-height: min(45vh, 420px);
-}
-
-.Lista_albunes {
-    margin: 20px auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
 }
 
 .fan-zone {
@@ -459,14 +407,14 @@ header.hero-section .hero-title {
 .fan-zone button[type="submit"] {
     min-height: 44px;
     border: none;
-    background: #0056b3;
+    background: var(--accent);
     color: #fff;
     font-weight: 600;
     cursor: pointer;
 }
 
 .fan-zone button[type="submit"]:hover {
-    background: #004494;
+    background: var(--accent-dark);
 }
 
 footer {
@@ -474,23 +422,7 @@ footer {
     font-size: 0.8em;
     color: #666;
 }
-@media(max-width:768px){
-    body{
-        padding:10px;/*Menos espacio en los bordes para ganar lugar*/
-    }
-    h1{
-        font-size: 1.8rem;/*achicamos un poco los titulos que no cupen toda la pantalla*/
-    }
-    .algunas_canciones{
-        padding:15px;/*ajustamos los contenedores azules*/
-    }
-    img{
-        width: 100%;/*La imagen ocupa todo el ancho disponible*/
-        height: auto;/*se ajusta el alutra automaticamente para no estirarse*/
-        max-width: 400px;/*pero que no crezca demasiado si el celular es grande*/
-    }
-}
-/* Grilla de álbumes — mismo espíritu que lineup-portrait-grid--classic */
+
 .album-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -498,65 +430,79 @@ footer {
     width: 100%;
     margin-top: 1.25rem;
 }
+
 .album-card {
     display: flex;
     flex-direction: column;
     margin: 0;
 }
-/* Cuadrado con bordes redondeados */
+
 .album-card__cover {
     width: 100%;
-    aspect-ratio: 1 / 1;          /* ← cuadrado; integrantes usan 3/4 */
-    object-fit: contain;          /* ← carátula completa, sin recortar */
-    background: #111;             /* relleno si la imagen no llena el cuadrado */
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: #111;
     border-radius: 12px;
     border: 1px solid #2a2a2a;
     display: block;
 }
+
+.album-card__cover--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ccc;
+    line-height: 1.3;
+}
+
 .album-card__cap {
     margin-top: 0.75rem;
     font-size: 0.82rem;
     text-align: center;
 }
+
 .album-card__cap strong {
     display: block;
     color: #fff;
 }
+
 .album-card__cap span {
     display: block;
     color: #9a9a9a;
     font-size: 0.8rem;
 }
-.enlace-spotify{
+
+.enlace_spotyfi {
     margin: 1.25rem 0 0.5rem 0;
     text-align: center;
 }
-.enlace-spotify-btn{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 999px;
-    background: #1db954;
-    color: #fff;
+
+.enlace_spotyfi a {
+    color: #1db954;
     font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    border: none;
-    box-shadow: 0 4px 14px rgba(29, 185, 84, 0.35);
-    transition: background 0.2s ease,transform 0.15 ease,box-shadow 0.2s ease;
+    text-decoration: underline;
 }
-.enlace-spotify-btn:hover{
-    background: #1ed760;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.45);
-    color: #fff;
-}
-.enlace-spotify_btn:focus-visible{
-    outline:  2px solid #fff;
-    outline-offset: italic;
-}
-.enlace-spotify_btn em{
-    font-style: italic;
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .algunas_canciones {
+        padding: 15px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+    }
 }

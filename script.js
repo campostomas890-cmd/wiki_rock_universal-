@@ -20,8 +20,18 @@ function searchHistory() {
 function showGlobalBandMessage() {
     const el = document.getElementById('globalSearch');
     const banda = (el && el.value.trim()) || '';
+    
     if (banda) {
-        window.alert('Buscando la wiki de: ' + banda + '. (Próximamente más bandas.)');
+        const busqueda = banda.toLowerCase();
+
+        // Sistema de redirección según lo que busque el usuario
+        if (busqueda.includes('breaking benjamin')) {
+            window.location.href = 'principal.html'; // Tu página actual de Breaking Benjamin
+        } else if (busqueda.includes('slipknot')) {
+            window.location.href = 'slipknot.html';  // La nueva página que vas a crear
+        } else {
+            window.alert('Por ahora solo tenemos las biografías de "Breaking Benjamin" y "Slipknot".');
+        }
     }
 }
 

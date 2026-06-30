@@ -1,3 +1,12 @@
+/* ⚡ Truco Maestro: Le ganamos el color global a Bootstrap */
+body {
+    color: #ffffff !important;
+}
+
+/* Forzamos que todos los títulos e introducciones mantengan el color claro */
+h1, h2, h3, h4, h5, h6, p, span, strong {
+    color: #ffffff !important;
+}
 /* Temas por banda */
 .theme-bb {
     --accent: #0056b3;

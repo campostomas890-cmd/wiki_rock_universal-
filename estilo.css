@@ -518,7 +518,7 @@ footer {
 /* Fuerza a que las portadas mantengan su proporción cuadrada sin deformarse */
 .card-img-top {
     width: 100% !important;
-    height: 200px !important; /* Ajusta la altura a tu gusto */
+    height: 390px !important; /* Ajusta la altura a tu gusto */
     object-fit: cover !important; /* Hace que la imagen llene el espacio de forma prolija */
 }
 

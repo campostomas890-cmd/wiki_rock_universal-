@@ -170,7 +170,7 @@
                 mensaje.textContent = "Escribí el nombre de una banda.";
                 return;
             }
-
+            
             const encontradas = bandas.filter((b) =>
                 b.nombre.toLowerCase().includes(texto) ||
                 b.palabras.includes(texto)
@@ -212,5 +212,14 @@
         });
         input.addEventListener("input", buscar);
     </script>
+
+    <!--En caso de que el usuario quiera iniciar sesion o registrarse-->
+    <div class="iniciar-sesion">
+        <a href="registro_usuarios.html">Iniciar sesión </a>
+        <h1>si no tienes una cuenta, registrate</h1>
+        <a href="registro_usuarios.html">Registrarse</a>
+    </div>
+    
+    <!--fin del caso de que el usuario quiera iniciar sesion o registrarse-->
 </body>
 </html>

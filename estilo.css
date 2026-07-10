@@ -521,4 +521,20 @@ footer {
     height: 390px !important; /* Ajusta la altura a tu gusto */
     object-fit: cover !important; /* Hace que la imagen llene el espacio de forma prolija */
 }
+.iniciar-sesion a {
+    background-color: #38bdf8; /* Azul celeste idéntico al botón */
+    color: #000000; /* Texto negro */
+    font-weight: bold; /* Letras en negrita */
+    padding: 10px 24px; /* Espaciado interno para dar forma de botón */
+    border-radius: 9999px; /* Bordes completamente redondeados */
+    text-decoration: none; /* Elimina la línea subrayada predeterminada */
+    display: inline-block; /* Permite aplicar el tamaño y márgenes correctamente */
+    font-family: sans-serif; /* Tipografía limpia */
+    margin: 10px 0; /* Añade separación arriba y abajo de cada botón */
+}
+
+/* Efecto visual opcional cuando pases el cursor por encima */
+.iniciar-sesion a:hover {
+    background-color: #0ea5e9; /* Un azul un poco más oscuro al pasar el mouse */
+}
 

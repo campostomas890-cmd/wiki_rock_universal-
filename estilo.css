@@ -520,6 +520,8 @@ footer {
     width: 100% !important;
     height: 390px !important; /* Ajusta la altura a tu gusto */
     object-fit: cover !important; /* Hace que la imagen llene el espacio de forma prolija */
+    /*---------------------------------------------------------------------*/
+    
 }
 .iniciar-sesion a {
     background-color: #38bdf8; /* Azul celeste idéntico al botón */

@@ -1,3 +1,97 @@
+/* ⚡ Truco Maestro: Le ganamos el color global a Bootstrap */
+body {
+    color: #ffffff !important;
+}
+
+/* Forzamos que todos los títulos e introducciones mantengan el color claro */
+h1, h2, h3, h4, h5, h6, p, span, strong {
+    color: #ffffff !important;
+}
+/* Temas por banda */
+.theme-bb {
+    --accent: #0056b3;
+    --accent-dark: #004494;
+    --accent-hover: #4a9eff;
+    --accent-focus: rgba(74, 158, 255, 0.85);
+    --accent-shadow: rgba(0, 86, 179, 0.35);
+    --intro-heading: #5aa9ff;
+    --lineup-heading: #9ec5ee;
+    --hero-bg: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+        url('img/lineup-formacion-actual.jpg') center top / cover no-repeat;
+}
+
+.theme-slipknot {
+    --accent: #9b111e;
+    --accent-dark: #7a0e18;
+    --accent-hover: #e63946;
+    --accent-focus: rgba(230, 57, 70, 0.85);
+    --accent-shadow: rgba(155, 17, 30, 0.35);
+    --intro-heading: #ff6b6b;
+    --lineup-heading: #ffb4b4;
+    --hero-bg: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+        url('https://upload.wikimedia.org/wikipedia/commons/f/f8/Slipknot_%282008%29.jpg') center top / cover no-repeat;
+}
+
+/*=================
+SECTION HERO (PRINCIPAL)
+===================*/
+.site-main {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: none;
+    letter-spacing: normal;
+    color: #e0e0e0;
+}
+
+.contenedor-principal {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.introduccion h2 {
+    color: var(--intro-heading);
+    margin-bottom: 15px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.introduccion p {
+    font-size: 1.1rem;
+    color: #d6d6d6;
+    line-height: 1.8;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.search-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: min(42rem, 100%);
+    margin: 1.25rem auto 0 auto;
+}
+
+.search-box--local {
+    margin-top: 0.35rem;
+}
+
 #globalSearch,
 #localSearch {
     flex: 1 1 14rem;
@@ -426,21 +520,5 @@ footer {
     width: 100% !important;
     height: 390px !important; /* Ajusta la altura a tu gusto */
     object-fit: cover !important; /* Hace que la imagen llene el espacio de forma prolija */
-}
-.iniciar-sesion a {
-    background-color: #38bdf8; /* Azul celeste idéntico al botón */
-    color: #000000; /* Texto negro */
-    font-weight: bold; /* Letras en negrita */
-    padding: 10px 24px; /* Espaciado interno para dar forma de botón */
-    border-radius: 9999px; /* Bordes completamente redondeados */
-    text-decoration: none; /* Elimina la línea subrayada predeterminada */
-    display: inline-block; /* Permite aplicar el tamaño y márgenes correctamente */
-    font-family: sans-serif; /* Tipografía limpia */
-    margin: 10px 0; /* Añade separación arriba y abajo de cada botón */
-}
-
-/* Efecto visual opcional cuando pases el cursor por encima */
-.iniciar-sesion a:hover {
-    background-color: #0ea5e9; /* Un azul un poco más oscuro al pasar el mouse */
-}
-
+    /*---------------------------------------------------------------------*/
+ }
